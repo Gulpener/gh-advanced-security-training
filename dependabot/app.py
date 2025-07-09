@@ -14,7 +14,9 @@ def get_api_data():
         data = response.json()
         return jsonify(data), 200
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        import logging
+        logging.error("Exception occurred", exc_info=True)
+        return jsonify({"error": "An internal error has occurred."}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
